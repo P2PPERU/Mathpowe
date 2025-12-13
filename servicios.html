@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Math Power | Cursos y Programas Educativos</title>
+    <meta name="description"
+        content="Descubre nuestros programas de matemáticas, lenguaje, oratoria e inglés. Clases individuales y grupales para primaria y secundaria.">
+
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mp-celeste': '#7acaf1',
+                        'mp-naranja': '#fdbd2a',
+                        'mp-azul': '#1e3a8a',
+                        'mp-fondo': '#f7faff',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        /* Carousel Styles */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-slide {
+                min-width: 50%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-slide {
+                min-width: 33.333%;
+            }
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: white;
+            border: 2px solid #1e3a8a;
+            color: #1e3a8a;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-btn:hover {
+            background: #1e3a8a;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d1d5db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #fdbd2a;
+            transform: scale(1.2);
+        }
+
+        /* Service Card Styles */
+        .service-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1.125rem;
+            line-height: 1.75;
+        }
+
+        .service-card .service-list span {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body class="text-gray-700 antialiased bg-mp-fondo">
+
+    <!-- Botón WhatsApp -->
+    <a href="https://wa.me/51921658125?text=Hola,%20quisiera%20información%20sobre%20los%20servicios%20de%20Math%20Power"
+        target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+    </a>
+
+    <!-- Navegación -->
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex-shrink-0 relative z-10">
+                <img src="images/logo-mathpower.png" alt="Math Power Logo"
+                    class="h-24 md:h-28 w-auto transition-all duration-300 hover:scale-105"
+                    style="margin-bottom: -30px;">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html"
+                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold transition">Inicio</a>
+                <a href="nosotros.html"
+                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold transition">Nosotros</a>
+                <a href="servicios.html"
+                    class="nav-link text-mp-naranja font-bold border-b-2 border-mp-naranja">Servicios</a>
+                <a href="contacto.html"
+                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold transition">Contacto</a>
+                <a href="https://wa.me/51921658125" target="_blank" rel="noopener noreferrer"
+                    class="bg-mp-naranja text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition transform hover:scale-105">
+                    Inscríbete
+                </a>
+            </div>
+
+            <button id="menu-button" class="md:hidden text-mp-azul focus:outline-none p-2 rounded-md hover:bg-mp-fondo"
+                aria-label="Menú">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="4" x2="20" y1="12" y2="12" />
+                    <line x1="4" x2="20" y1="6" y2="6" />
+                    <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 pt-2 pb-4 space-y-2 border-t shadow-lg">
+            <a href="index.html"
+                class="block text-mp-azul hover:text-mp-celeste font-medium py-2 rounded-md transition">Inicio</a>
+            <a href="nosotros.html"
+                class="block text-mp-azul hover:text-mp-celeste font-medium py-2 rounded-md transition">Nosotros</a>
+            <a href="servicios.html" class="block text-mp-naranja font-bold py-2 rounded-md">Servicios</a>
+            <a href="contacto.html"
+                class="block text-mp-azul hover:text-mp-celeste font-medium py-2 rounded-md transition">Contacto</a>
+            <a href="https://wa.me/51921658125" target="_blank" rel="noopener noreferrer"
+                class="block bg-mp-naranja text-center text-white font-bold py-3 rounded-lg shadow-md mt-4 hover:bg-opacity-90 transition">
+                Inscribirme
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- Hero Servicios -->
+        <section class="bg-gradient-to-r from-mp-naranja to-mp-celeste pt-28 pb-20 text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-8">Nuestros Servicios</h1>
+                <p class="text-2xl sm:text-3xl max-w-4xl mx-auto opacity-95 leading-relaxed">
+                    Programas diseñados para la nivelación y el adelanto académico en un entorno 100% virtual
+                </p>
+            </div>
+        </section>
+
+        <!-- Cursos Centrales - Grid Centrado -->
+        <section class="py-24 md:py-32 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2
+                    class="text-4xl md:text-5xl font-extrabold text-mp-azul border-b-4 border-mp-naranja/50 pb-4 mb-6 text-center">
+                    Cursos Principales
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-600 mb-16 text-center">Formación integral en las áreas
+                    fundamentales</p>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Matemáticas -->
+                    <div class="service-card border-t-8 border-mp-naranja h-full">
+                        <i data-lucide="line-chart" class="w-14 h-14 text-mp-naranja mb-6"></i>
+                        <h3 class="text-mp-azul text-2xl font-bold mb-3">Matemáticas Integral</h3>
+                        <p class="text-gray-600 text-lg mb-6">Todos los cursos de Matemáticas para Primaria y
+                            Secundaria.</p>
+                        <div class="service-list grid grid-cols-1 gap-3">
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-naranja mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Aritmética</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-naranja mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Álgebra</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-naranja mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Geometría</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-naranja mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Trigonometría</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-naranja mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Razonamiento Matemático</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lenguaje -->
+                    <div class="service-card border-t-8 border-mp-celeste h-full">
+                        <i data-lucide="book-open-check" class="w-14 h-14 text-mp-celeste mb-6"></i>
+                        <h3 class="text-mp-azul text-2xl font-bold mb-3">Lenguaje y Comunicación</h3>
+                        <p class="text-gray-600 text-lg mb-6">Cursos de letras y comunicación efectiva.</p>
+                        <div class="service-list grid grid-cols-1 gap-3">
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-celeste mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Lenguaje</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-celeste mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Razonamiento Verbal</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-lucide="check-circle" class="w-6 h-6 text-mp-celeste mr-3 flex-shrink-0"></i>
+                                <span class="text-gray-700 text-lg">Oratoria</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modalidades - Carrusel -->
+        <section class="py-24 md:py-32 bg-mp-fondo">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-mp-azul border-b-4 border-mp-celeste/50 pb-4 mb-16">
+                    Nuestros Ciclos Escolares
+                </h2>
+
+                <div class="carousel-container" id="carousel-ciclos">
+                    <button class="carousel-btn prev" onclick="moveCarousel('carousel-ciclos', -1)">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+
+                    <div class="carousel-track">
+                        <!-- Ciclo Verano -->
+                        <div class="carousel-slide">
+                            <div class="service-card border-l-8 border-mp-celeste">
+                                <i data-lucide="sun" class="w-12 h-12 text-mp-celeste mb-5"></i>
+                                <h3 class="text-xl md:text-2xl font-bold text-mp-azul mb-4">Ciclo Verano 2026</h3>
+                                <p class="text-lg text-gray-600 leading-relaxed">Reforzamiento y adelanto escolar de los
+                                    cursos de números y letras durante las vacaciones.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ciclo Anual -->
+                        <div class="carousel-slide">
+                            <div class="service-card border-l-8 border-mp-naranja">
+                                <i data-lucide="calendar" class="w-12 h-12 text-mp-naranja mb-5"></i>
+                                <h3 class="text-xl md:text-2xl font-bold text-mp-azul mb-4">Ciclo Anual 2026</h3>
+                                <p class="text-lg text-gray-600 leading-relaxed">Ciclo paralelo al colegio para cursos
+                                    de números y letras durante todo el año escolar.</p>
+                            </div>
+                        </div>
+
+                        <!-- Clases Individuales -->
+                        <div class="carousel-slide">
+                            <div class="service-card border-l-8 border-mp-celeste">
+                                <i data-lucide="user-check" class="w-12 h-12 text-mp-celeste mb-5"></i>
+                                <h3 class="text-xl md:text-2xl font-bold text-mp-azul mb-4">Clases Individuales</h3>
+                                <p class="text-lg text-gray-600 leading-relaxed">Clases personalizadas de todos los
+                                    cursos de matemáticas y lenguaje, adaptadas a tus necesidades.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" onclick="moveCarousel('carousel-ciclos', 1)">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+
+                    <div class="carousel-dots" id="dots-ciclos"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bienestar Integral - Carrusel -->
+        <section class="py-24 md:py-32 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-mp-azul border-b-4 border-mp-naranja/50 pb-4 mb-6">
+                    Bienestar Integral
+                </h2>
+                <p class="text-xl md:text-2xl text-gray-600 mb-16">Atención psicológica para estudiantes y padres de
+                    familia.</p>
+
+                <div class="carousel-container" id="carousel-bienestar">
+                    <button class="carousel-btn prev" onclick="moveCarousel('carousel-bienestar', -1)">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+
+                    <div class="carousel-track">
+                        <!-- Estudiantes -->
+                        <div class="carousel-slide">
+                            <div class="service-card border-l-8 border-mp-naranja">
+                                <div class="flex items-start space-x-5">
+                                    <i data-lucide="smile" class="w-14 h-14 text-mp-naranja flex-shrink-0"></i>
+                                    <div>
+                                        <h3 class="text-2xl md:text-3xl font-bold text-mp-azul mb-4">Apoyo Psicológico
+                                            Escolar</h3>
+                                        <p class="text-lg text-gray-600 leading-relaxed">Técnicas de estudio, manejo de
+                                            ansiedad académica y desarrollo de hábitos efectivos para el éxito escolar.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Padres -->
+                        <div class="carousel-slide">
+                            <div class="service-card border-l-8 border-mp-celeste">
+                                <div class="flex items-start space-x-5">
+                                    <i data-lucide="users" class="w-14 h-14 text-mp-celeste flex-shrink-0"></i>
+                                    <div>
+                                        <h3 class="text-2xl md:text-3xl font-bold text-mp-azul mb-4">Orientación para
+                                            Padres</h3>
+                                        <p class="text-lg text-gray-600 leading-relaxed">Cómo apoyar el aprendizaje
+                                            virtual y el desarrollo emocional de sus hijos. Talleres y consejería
+                                            psicoeducativas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" onclick="moveCarousel('carousel-bienestar', 1)">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+
+                    <div class="carousel-dots" id="dots-bienestar"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-20 bg-gradient-to-r from-mp-azul to-mp-celeste">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-6">¿Listo para comenzar?</h2>
+                <p class="text-2xl mb-10 opacity-95">Inscríbete ahora y transforma el futuro académico de tu hijo</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+
+                    <a href="https://wa.me/51921658125?text=Quiero%20inscribirme%20en%20Math%20Power" target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-mp-naranja text-white font-bold text-xl py-5 px-12 rounded-xl shadow-xl hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                        Quiero inscribirme
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-mp-azul text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">Math<span class="text-mp-naranja">Power</span></h3>
+                    <p class="text-gray-300 mb-4">Academia virtual de matemáticas y lenguaje. Educación de excelencia.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/profile.php?id=100064217226668" target="_blank"
+                            class="text-gray-300 hover:text-white transition"><i data-lucide="facebook"
+                                class="w-6 h-6"></i></a>
+                        <a href="https://www.instagram.com/academiamathpower?igsh=cnBpMjh0Y3djOGF4" target="_blank"
+                            class="text-gray-300 hover:text-white transition"><i data-lucide="instagram"
+                                class="w-6 h-6"></i></a>
+                        <a href="https://youtube.com/@jhonmathpower?si=nrv5N-s6UXYRmRmV" target="_blank"
+                            class="text-gray-300 hover:text-white transition"><i data-lucide="youtube"
+                                class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Enlaces</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition">Inicio</a></li>
+                        <li><a href="nosotros.html" class="text-gray-300 hover:text-white transition">Nosotros</a></li>
+                        <li><a href="servicios.html" class="text-gray-300 hover:text-white transition">Servicios</a>
+                        </li>
+                        <li><a href="contacto.html" class="text-gray-300 hover:text-white transition">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center"><i data-lucide="phone" class="w-4 h-4 mr-2"></i> +51 921658125
+                        </li>
+                        <li class="flex items-center"><i data-lucide="mail" class="w-4 h-4 mr-2"></i>
+                            jhon.mathpower@gmail.com</li>
+                        <li class="flex items-center"><i data-lucide="monitor" class="w-4 h-4 mr-2"></i> 100% Online
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-600 pt-6 text-center text-gray-300 text-sm">
+                <p>&copy; 2025 Math Power. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+
+        // Carousel functionality
+        const carousels = {
+            'carousel-cursos': { currentIndex: 0, slidesPerView: 1 },
+            'carousel-ciclos': { currentIndex: 0, slidesPerView: 1 },
+            'carousel-bienestar': { currentIndex: 0, slidesPerView: 1 }
+        };
+
+        function updateSlidesPerView() {
+            const width = window.innerWidth;
+            for (let key in carousels) {
+                if (width >= 1024) {
+                    carousels[key].slidesPerView = 3;
+                } else if (width >= 768) {
+                    carousels[key].slidesPerView = 2;
+                } else {
+                    carousels[key].slidesPerView = 1;
+                }
+            }
+        }
+
+        function initCarousels() {
+            updateSlidesPerView();
+
+            for (let carouselId in carousels) {
+                const carousel = document.getElementById(carouselId);
+                if (!carousel) continue;
+
+                const track = carousel.querySelector('.carousel-track');
+                const slides = track.querySelectorAll('.carousel-slide');
+                const dotsContainer = document.getElementById(`dots-${carouselId.split('-')[1]}`);
+
+                const totalSlides = slides.length;
+                const slidesPerView = carousels[carouselId].slidesPerView;
+                const maxIndex = Math.max(0, totalSlides - slidesPerView);
+
+                // Create dots
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i <= maxIndex; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                    dot.onclick = () => goToSlide(carouselId, i);
+                    dotsContainer.appendChild(dot);
+                }
+
+                updateCarousel(carouselId);
+            }
+        }
+
+        function moveCarousel(carouselId, direction) {
+            const carousel = carousels[carouselId];
+            const container = document.getElementById(carouselId);
+            const track = container.querySelector('.carousel-track');
+            const slides = track.querySelectorAll('.carousel-slide');
+
+            const totalSlides = slides.length;
+            const maxIndex = Math.max(0, totalSlides - carousel.slidesPerView);
+
+            carousel.currentIndex += direction;
+
+            if (carousel.currentIndex < 0) {
+                carousel.currentIndex = maxIndex;
+            } else if (carousel.currentIndex > maxIndex) {
+                carousel.currentIndex = 0;
+            }
+
+            updateCarousel(carouselId);
+        }
+
+        function goToSlide(carouselId, index) {
+            carousels[carouselId].currentIndex = index;
+            updateCarousel(carouselId);
+        }
+
+        function updateCarousel(carouselId) {
+            const carousel = carousels[carouselId];
+            const container = document.getElementById(carouselId);
+            const track = container.querySelector('.carousel-track');
+            const dotsContainer = document.getElementById(`dots-${carouselId.split('-')[1]}`);
+
+            const slideWidth = 100 / carousel.slidesPerView;
+            const offset = carousel.currentIndex * slideWidth;
+
+            track.style.transform = `translateX(-${offset}%)`;
+
+            // Update dots
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === carousel.currentIndex);
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initCarousels);
+
+        // Update on resize
+        window.addEventListener('resize', () => {
+            updateSlidesPerView();
+            for (let carouselId in carousels) {
+                carousels[carouselId].currentIndex = 0;
+            }
+            initCarousels();
+        });
+    </script>
+</body>
+
+</html>
