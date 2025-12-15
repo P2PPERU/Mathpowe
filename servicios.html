@@ -172,22 +172,22 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             <a href="index.html" class="flex-shrink-0 relative z-10">
                 <img src="images/logo-mathpower.png" alt="Math Power Logo"
-                    class="h-24 md:h-28 w-auto transition-all duration-300 hover:scale-105"
-                    style="margin-bottom: -30px;">
+                    class="h-20 md:h-24 w-auto transition-all duration-300 hover:scale-105"
+                    style="margin-top: -8px; margin-bottom: -20px;">
             </a>
 
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html"
-                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold transition">Inicio</a>
+                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold text-base transition">Inicio</a>
                 <a href="nosotros.html"
-                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold transition">Nosotros</a>
+                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold text-base transition">Nosotros</a>
                 <a href="servicios.html"
-                    class="nav-link text-mp-naranja font-bold border-b-2 border-mp-naranja">Servicios</a>
+                    class="nav-link text-mp-naranja font-bold text-base border-b-2 border-mp-naranja">Servicios</a>
                 <a href="contacto.html"
-                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold transition">Contacto</a>
+                    class="nav-link text-mp-azul hover:text-mp-celeste font-semibold text-base transition">Contacto</a>
                 <a href="https://wa.me/51921658125" target="_blank" rel="noopener noreferrer"
-                    class="bg-mp-naranja text-white font-bold py-2 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition transform hover:scale-105">
-                    Inscríbete
+                    class="bg-mp-naranja text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition transform hover:scale-105">
+                    Inscríbete Ahora
                 </a>
             </div>
 
@@ -219,7 +219,7 @@
 
     <main class="pt-16">
         <!-- Hero Servicios -->
-        <section class="bg-gradient-to-r from-mp-naranja to-mp-celeste pt-28 pb-20 text-white">
+        <section class="bg-gradient-to-r from-mp-celeste to-mp-azul pt-28 pb-20 text-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-8">Nuestros Servicios</h1>
                 <p class="text-2xl sm:text-3xl max-w-4xl mx-auto opacity-95 leading-relaxed">
@@ -404,12 +404,20 @@
         </section>
 
         <!-- CTA -->
-        <section class="py-20 bg-gradient-to-r from-mp-azul to-mp-celeste">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6">¿Listo para comenzar?</h2>
-                <p class="text-2xl mb-10 opacity-95">Inscríbete ahora y transforma el futuro académico de tu hijo</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <section class="py-20 relative overflow-hidden"
+            style="background: linear-gradient(to bottom right, #13c2c2, #08979c, #0050b3);">
+            <!-- Fondo con patrón de puntos -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute inset-0"
+                    style="background-image: radial-gradient(circle, rgba(255,255,255,0.25) 2px, transparent 2px); background-size: 40px 40px;">
+                </div>
+            </div>
 
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white relative z-10">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">¿Listo para comenzar?</h2>
+                <p class="text-xl sm:text-2xl mb-10 opacity-95">Inscríbete ahora y transforma el futuro académico de tu
+                    hijo</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="https://wa.me/51921658125?text=Quiero%20inscribirme%20en%20Math%20Power" target="_blank"
                         rel="noopener noreferrer"
                         class="inline-block bg-mp-naranja text-white font-bold text-xl py-5 px-12 rounded-xl shadow-xl hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
