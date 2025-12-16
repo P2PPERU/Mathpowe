@@ -1,0 +1,12 @@
+# Activar el motor de reescritura
+RewriteEngine On
+
+# Redirigir URLs sin .html a las correspondientes con .html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Redirigir URLs con .html a sin .html (para SEO)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
